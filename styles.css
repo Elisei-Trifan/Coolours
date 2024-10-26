@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: darkred;
+  border: 1px solid green;
+  border-top: 2px solid green;
+}
+
+.col_text {
+  padding: 10px;
+  color: #ccc;
+  border-radius: 10px;
+  transition: background 0.4s;
+}
+
+.col_text:hover {
+  cursor: pointer;
+  background: rgba(45, 124, 87, 0.9);
+}
+
+.col_button {
+  padding: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: background 0.4s;
+}
+
+.col_button:hover {
+  cursor: pointer;
+  background: rgba(45, 124, 87, 0.9);
+}
