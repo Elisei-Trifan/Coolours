@@ -3,6 +3,10 @@
 
 const cols = document.querySelectorAll('.col')
 
+document.addEventListener('keydown', (event) => {
+  event.code === 'Space' ? setRandomColor() : false
+})
+
 function generateColor() {
   // FF0000
   // 00FF00
@@ -19,12 +23,21 @@ function generateColor() {
 function setRandomColor() {
   cols.forEach((item) => {
     const text = item.querySelector('.col_text')
-    const color = generateColor()
+    const button = item.querySelector('.col_button')
+    // const color = generateColor()
+    const color = chroma.random()
     text.textContent = color
 
-    // item.style.background = color
-    item.style.background = chroma.random()
+    item.style.background = color
+
+    setTextColor(text, color)
+    setTextColor(button, color)
   })
+}
+
+function setTextColor(text, color) {
+  const luminance = chroma(color).luminance()
+  text.style.color = luminance > 0.5 ? 'black' : 'white'
 }
 
 setRandomColor()
