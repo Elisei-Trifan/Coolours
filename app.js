@@ -13,10 +13,10 @@ function generateColor() {
   return '#' + color
 }
 
-generateColor()
-
 function setRandomColor() {
-  cols.forEach((item) => {})
+  cols.forEach((item) => {
+    item.style.background = generateColor()
+  })
 }
 
 setRandomColor()

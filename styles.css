@@ -17,8 +17,6 @@ body {
   align-items: center;
   justify-content: space-around;
   background: darkred;
-  border: 1px solid green;
-  border-top: 2px solid green;
 }
 
 .col_text {
