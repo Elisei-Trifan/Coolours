@@ -1,3 +1,6 @@
+// import chroma from 'chroma-js'
+// import chroma from 'https://unpkg.com/chroma-js@3.0.0/index.js'
+
 const cols = document.querySelectorAll('.col')
 
 function generateColor() {
@@ -15,7 +18,12 @@ function generateColor() {
 
 function setRandomColor() {
   cols.forEach((item) => {
-    item.style.background = generateColor()
+    const text = item.querySelector('.col_text')
+    const color = generateColor()
+    text.textContent = color
+
+    // item.style.background = color
+    item.style.background = chroma.random()
   })
 }
 
