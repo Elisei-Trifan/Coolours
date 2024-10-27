@@ -4,7 +4,24 @@
 const cols = document.querySelectorAll('.col')
 
 document.addEventListener('keydown', (event) => {
+  event.preventDefault()
+
   event.code === 'Space' ? setRandomColor() : false
+})
+
+document.addEventListener('click', (event) => {
+  const type = event.target.dataset.type
+  if (type === 'lock') {
+    const node =
+      event.target.tagName.toLowerCase() === 'i'
+        ? event.target
+        : event.target.children[0]
+
+    node.classList.toggle('fa-lock-open')
+    node.classList.toggle('fa-lock')
+  } else if (type === 'copy') {
+    copyText(event.target.textContent)
+  }
 })
 
 function generateColor() {
@@ -20,14 +37,23 @@ function generateColor() {
   return '#' + color
 }
 
+function copyText(text) {
+  return navigator.clipboard.writeText(text)
+}
+
 function setRandomColor() {
   cols.forEach((item) => {
+    const locked = item.querySelector('i').classList.contains('fa-lock')
     const text = item.querySelector('.col_text')
     const button = item.querySelector('.col_button')
     // const color = generateColor()
     const color = chroma.random()
-    text.textContent = color
 
+    if (locked) {
+      return
+    }
+
+    text.textContent = color
     item.style.background = color
 
     setTextColor(text, color)

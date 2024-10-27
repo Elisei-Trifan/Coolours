@@ -32,6 +32,7 @@ body {
 }
 
 .col_button {
+  outline: none;
   padding: 10px;
   background: transparent;
   border: none;
