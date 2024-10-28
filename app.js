@@ -42,6 +42,8 @@ function copyText(text) {
 }
 
 function setRandomColor() {
+  const colors = []
+
   cols.forEach((item) => {
     const locked = item.querySelector('i').classList.contains('fa-lock')
     const text = item.querySelector('.col_text')
@@ -50,8 +52,11 @@ function setRandomColor() {
     const color = chroma.random()
 
     if (locked) {
+      colors.push(text.textContent)
       return
     }
+
+    colors.push(color)
 
     text.textContent = color
     item.style.background = color
@@ -59,11 +64,17 @@ function setRandomColor() {
     setTextColor(text, color)
     setTextColor(button, color)
   })
+
+  updateColorsHash(colors)
 }
 
 function setTextColor(text, color) {
   const luminance = chroma(color).luminance()
   text.style.color = luminance > 0.5 ? 'black' : 'white'
+}
+
+function updateColorsHash(colors = []) {
+  document.location.hash = colors.map((item) => item.substring(1)).join('-')
 }
 
 setRandomColor()
