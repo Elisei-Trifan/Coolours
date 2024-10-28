@@ -41,7 +41,7 @@ function copyText(text) {
   return navigator.clipboard.writeText(text)
 }
 
-function setRandomColor() {
+function setRandomColor(isInitial) {
   const colors = []
 
   cols.forEach((item) => {
@@ -74,7 +74,19 @@ function setTextColor(text, color) {
 }
 
 function updateColorsHash(colors = []) {
-  document.location.hash = colors.map((item) => item.substring(1)).join('-')
+  document.location.hash = colors
+    .map((item) => item.toString().substring(1))
+    .join('-')
 }
 
-setRandomColor()
+function getColorsFromHash() {
+  if (document.location.hash.length > 1) {
+    return document.location.hash
+      .substring(1)
+      .split('-')
+      .map((item = '#' + item))
+  }
+  return []
+}
+
+setRandomColor(true)
