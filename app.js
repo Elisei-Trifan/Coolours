@@ -42,21 +42,26 @@ function copyText(text) {
 }
 
 function setRandomColor(isInitial) {
-  const colors = []
+  const colors = isInitial ? getColorsFromHash() : []
 
-  cols.forEach((item) => {
+  cols.forEach((item, index) => {
     const locked = item.querySelector('i').classList.contains('fa-lock')
     const text = item.querySelector('.col_text')
     const button = item.querySelector('.col_button')
     // const color = generateColor()
-    const color = chroma.random()
+    const color = isInitial
+      ? colors[index]
+        ? colors[index]
+        : chroma.random()
+      : chroma.random()
 
     if (locked) {
       colors.push(text.textContent)
       return
     }
-
-    colors.push(color)
+    if (!isInitial) {
+      colors.push(color)
+    }
 
     text.textContent = color
     item.style.background = color
